@@ -4,95 +4,131 @@ import java.util.Scanner;
 
 /**
  *
- * @author acer
+ * @author Vinayak Pavate
  */
 public class ATM {
 
     public static void main(String[] args) {
+        //idChoice is used as a loop initiator when the customer enters their ID
+        boolean idChoice;
+        //We will be using this variable to be testing if the ID is correct
+        int id;
+        //boolean exitMenu is used in the loop when we exit the menu
+        boolean exitMenu;
 
-        int accountChoice;
-        int exit = 0;
-        int identity;
-        int inOption = 0;
+        //Creating a new istance of the class ATM
         ATM atm = new ATM();
-      
-                
         Scanner input = new Scanner(System.in);
-        Scanner input2 = new Scanner(System.in);
+
+        //We create first account
         Account account1 = new Account("Vinayak", 101);
-        Account account2 = new Account("MonsterCat", 102);
-        account1.deposit(50);
-        account2.deposit(1000);
+        /*The method deposit is used as the customer deposits the
+        amount when they make a new account */
+        account1.deposit(50.0);
         account1.setAnnualInterestRate(5);
+
+        //We create the second account 
+        Account account2 = new Account("Johnny Depp", 102);
+        account2.deposit(1000.0);
         account2.setAnnualInterestRate(5);
-        int exitAtm;
-       do{
+
+        //Start of the ATM loop
+        do {
+            //Start of ID input loop
             do {
-                System.out.println("Enter your account ID");              
-                identity = input.nextInt();
-                if (((identity == 101) || (identity == 102))) {
-                    accountChoice = 1;
+
+                System.out.println("Hi, Welcome to the ATM");
+                System.out.println("Enter your account ID");
+                id = input.nextInt();
+                //Only two account Id are allowed
+                if (((id == 101) || (id == 102))) {
+                    idChoice = true;
 
                 } else {
+                    System.out.println("I'm sorry something seems wrong");
                     System.out.println("Please enter a valid ID");
-                    accountChoice = 0;
+                    idChoice = false;
 
                 }
 
-            
-            } while (accountChoice == 0);
-           
-            if (identity == 101) {
-                atm.menu(account1);
-            }
-            if (identity == 102) {
+            } while (idChoice = false);
 
-               atm.menu(account2);
+            if (id == 101) {
+                atm.menu(account1);//calling the menu method for 101
+                exitMenu = true;
             }
-       }while(inOption==0);
-
-       
-    
+            if (id == 102) {
+                atm.menu(account2);//calling the menu method for 102
+                exitMenu = true;
+            }
+        } while (exitMenu = true);
     }
 
+    //Menu method
+    /**
+     * 
+     * @param acc This is a class parameter which uses the 
+     * Object account to be used in the menu method 
+     */
     public void menu(Account acc) {
-        Scanner input3 = new Scanner(System.in);
-        int inOption = 0;
-        int exitAtm = 0;
-        do{
-        System.out.println("Main Menu");
-        System.out.println("1: Account info");
-        System.out.println("2: Withdraw");
-        System.out.println("3: Deposit");
-        System.out.println("4: Exit");
-        System.out.println("Please choose what you'd like to do:");
-        int option = input3.nextInt();
+        Scanner scan = new Scanner(System.in);
+        int inOption=0;//Used as a loop element for menu
+        int caseError; //Used as a loop element for try and catch
+        //Start Menu loop
+        do {
+            System.out.println("Main Menu");
+            System.out.println("1: Account info");
+            System.out.println("2: Withdraw");
+            System.out.println("3: Deposit");
+            System.out.println("4: Exit");
+            System.out.println("Please choose what you'd like to do:");
+            int menuOption = scan.nextInt();
 
-        switch (option) {
-            case 1:
-                System.out.println("Customer: " + acc.getCustomerName());
-                System.out.println("Account Balance: $" + acc.getBalance());
-                System.out.println("Monthly interest earned: $" + acc.monthlyInterest());
-                System.out.println("\n");
-                inOption = 1;
-                break;
-            case 2:
-                System.out.print("Enter the amout to withdraw:");
-                int withdrawAmount = input3.nextInt();
-                acc.withdraw(withdrawAmount);
-                inOption = 1;
-                break;
-            case 3:
-                System.out.print("Enter the amout to deposit:");
-                int depositAmount = input3.nextInt();
-                acc.deposit(depositAmount);
-                inOption = 1;
-                break;
-            case 4:
-                inOption = 0;
-                break;
-        }
-        }while(inOption==1);
+            switch (menuOption) {
+                case 1://Shows the Account Info
+                    System.out.println("Customer: " + acc.getCustomerName());
+                    System.out.printf("Account Balance: $%.2f\n",acc.getBalance());
+                    System.out.printf("Monthly interest earned: $%.2f", acc.monthlyInterest());
+                    System.out.println("\n");
+                    inOption = 1;
+                    break;
+                case 2://To Withdraw amount from accounts
+                    do {
+                        System.out.print("Enter the amout to withdraw:");
+                        double withdrawAmount = scan.nextDouble();
+                        try {
+                            acc.withdraw(withdrawAmount);
+                            caseError = 1;
+                        } catch (Throwable e) {
+                            System.out.println(e.getMessage());
+                             System.out.println("\n");
+                            caseError = 0;
+                        }
+
+                    } while (caseError == 0);
+                    inOption = 1;
+                    break;
+                case 3://To Deposit amout to accounts
+                    do {
+
+                        System.out.print("Enter the amout to deposit:");
+                        double depositAmount = scan.nextDouble();
+                        try {
+                            acc.deposit(depositAmount);
+                            caseError= 1;
+                        } catch (Throwable e) {
+                            System.out.println(e.getMessage());
+                            System.out.println("\n");
+                            caseError= 0;
+                        }
+                    } while (caseError == 0);
+                    inOption = 1;
+                    break;
+                case 4://To exit the menu
+                    inOption = 0;
+                    break;
+            }
+        } while (inOption == 1);
 
     }
 }
