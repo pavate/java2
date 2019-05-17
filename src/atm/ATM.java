@@ -26,6 +26,7 @@ public class ATM {
         //We create first account
         Account account1 = new Account("Vinayak", 101);
 
+
         /*The method deposit is used as the customer deposits the
         amount when they make a new account */
         account1.deposit(50.0);
@@ -98,35 +99,33 @@ public class ATM {
                     inOption = 1;
                     break;
                 case 2://To Withdraw amount from accounts
-                    do {
-                        System.out.print("Enter the amout to withdraw:");
-                        double withdrawAmount = scan.nextDouble();
-                        try {
-                            acc.withdraw(withdrawAmount);
-                            caseError = 1;
-                        } catch (Throwable e) {
-                            System.out.println(e.getMessage());
-                            System.out.println("\n");
-                            caseError = 0;
-                        }
 
-                    } while (caseError == 1);
+                    System.out.print("Enter the amout to withdraw:");
+                    double withdrawAmount = scan.nextDouble();
+                    try {
+                        acc.withdraw(withdrawAmount);
+
+                    } catch (Throwable e) {
+                        System.out.println(e.getMessage());
+                        System.out.println("\n");
+
+                    }
+
                     inOption = 1;
                     break;
                 case 3://To Deposit amout to accounts
-                    do {
 
-                        System.out.print("Enter the amout to deposit:");
-                        double depositAmount = scan.nextDouble();
-                        try {
-                            acc.deposit(depositAmount);
-                            caseError = 1;
-                        } catch (Throwable e) {
-                            System.out.println(e.getMessage());
-                            System.out.println("\n");
-                            caseError = 0;
-                        }
-                    } while (caseError == 1);
+                    System.out.print("Enter the amout to deposit:");
+                    double depositAmount = scan.nextDouble();
+                    try {
+                        acc.deposit(depositAmount);
+
+                    } catch (Throwable e) {
+                        System.out.println(e.getMessage());
+                        System.out.println("\n");
+                        caseError = 0;
+                    }
+
                     inOption = 1;
                     break;
                 case 4://To exit the menu
@@ -136,4 +135,5 @@ public class ATM {
         } while (inOption == 1);
 
     }
+
 }
