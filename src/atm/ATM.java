@@ -3,6 +3,7 @@ package atm;
 import java.util.Scanner;
 
 /**
+ * This is the main part of the ATM where the main input and output happens.
  *
  * @author Vinayak Pavate
  */
@@ -30,7 +31,7 @@ public class ATM {
         /*The method deposit is used as the customer deposits the
         amount when they make a new account */
         account1.deposit(50.0);
-        account1.setAnnualInterestRate(5);
+        account1.setAnnualInterestRate(5); 
 
         //We create the second account 
         Account account2 = new Account("Johnny Depp", 102);
@@ -91,11 +92,8 @@ public class ATM {
 
             //We are using switch to explore our menu options
             switch (menuOption) {
-                case 1://Shows the Account Info
-                    System.out.println("Customer: " + acc.getCustomerName());
-                    System.out.printf("Account Balance: $%.2f\n", acc.getBalance());
-                    System.out.printf("Monthly interest earned: $%.2f", acc.monthlyInterest());
-                    System.out.println("\n");
+                case 1: //Shows the Account Info
+                    System.out.println(acc.toString());
                     inOption = 1;
                     break;
                 case 2://To Withdraw amount from accounts
