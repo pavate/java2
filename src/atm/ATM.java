@@ -4,6 +4,7 @@ import java.util.Scanner;
 
 /**
  * This is the main part of the ATM where the main input and output happens.
+ * Date: 05/21/2019
  *
  * @author Vinayak Pavate
  */
@@ -27,11 +28,10 @@ public class ATM {
         //We create first account
         Account account1 = new Account("Vinayak", 101);
 
-
         /*The method deposit is used as the customer deposits the
         amount when they make a new account */
         account1.deposit(50.0);
-        account1.setAnnualInterestRate(5); 
+        account1.setAnnualInterestRate(5);
 
         //We create the second account 
         Account account2 = new Account("Johnny Depp", 102);
@@ -79,7 +79,7 @@ public class ATM {
     public void menu(Account acc) {
         Scanner scan = new Scanner(System.in);
         int inOption = 0;//Used as a loop element for menu
-        int caseError; //Used as a loop element for try and catch
+
         //Start Menu loop
         do {
             System.out.println("Main Menu");
@@ -96,8 +96,8 @@ public class ATM {
                     System.out.println(acc.toString());
                     inOption = 1;
                     break;
-                case 2://To Withdraw amount from accounts
-
+                    
+                case 2: //To Withdraw amount from accounts
                     System.out.print("Enter the amout to withdraw:");
                     double withdrawAmount = scan.nextDouble();
                     try {
@@ -106,12 +106,10 @@ public class ATM {
                     } catch (Throwable e) {
                         System.out.println(e.getMessage());
                         System.out.println("\n");
-
                     }
-
                     inOption = 1;
                     break;
-                case 3://To Deposit amout to accounts
+                case 3: //To Deposit amout to accounts
 
                     System.out.print("Enter the amout to deposit:");
                     double depositAmount = scan.nextDouble();
@@ -121,12 +119,11 @@ public class ATM {
                     } catch (Throwable e) {
                         System.out.println(e.getMessage());
                         System.out.println("\n");
-                        caseError = 0;
                     }
 
                     inOption = 1;
                     break;
-                case 4://To exit the menu
+                case 4: //To exit the menu
                     inOption = 0;
                     break;
             }
