@@ -23,32 +23,28 @@ public class Account {
         this.customerName = customerName;
         this.id = id;
     }
-//setter to set the name of the customer
-
+    
+    //setter to set the name of the customer
     public void setCustomerName(String customerName) {
         this.customerName = customerName;
     }
-//setter to set the interest rate of the specific account
-
+    //setter to set the interest rate of the specific account
     public void setAnnualInterestRate(double annualInterestRate) {
         this.annualInterestRate = annualInterestRate;
     }
-//getter to get the customer name
-
+    //getter to get the customer name
     public String getCustomerName() {
         return customerName;
     }
-//getter to retrive the ID of the customer
-
-    public int getId() {
+    //getter to retrive the ID of the customer
+   public int getId() {
         return id;
     }
-//getter to retrive the balance of the customer
-
+    //getter to retrive the balance of the customer
     public double getBalance() {
         return balance;
     }
-//getter to retrive the annual interest rate of a specific account
+    //getter to retrive the annual interest rate of a specific account
 
     public double getAnnualInterestRate() {
         return annualInterestRate;
