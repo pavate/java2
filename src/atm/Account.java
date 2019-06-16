@@ -1,5 +1,5 @@
 package atm;
-ya cunt
+lol no ways u are the cunt
 
 /**
  * This is the running part of The Account class
